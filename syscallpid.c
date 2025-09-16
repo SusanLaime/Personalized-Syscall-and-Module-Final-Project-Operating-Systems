@@ -31,7 +31,7 @@ SYSCALL_DEFINE3(pidfiles, pid_t, pid, char __user *, ubuf, size_t, ubuf_len)
 
  rcu_read_lock();
  task = pid_task(find_vpid(pid), PIDTYPE_PID);
- if (!task) { ret = -ESRCH; goto out_rcu; }
+ if (!task) { ret = -1; goto out_rcu; }
 
  files = rcu_dereference(task->files);
  if (!files) { ret = 0; goto out_rcu; }
